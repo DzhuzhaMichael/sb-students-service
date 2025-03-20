@@ -39,6 +39,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=master
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - SPRING_RABBITMQ_HOST=rabbit
+      - SPRING_PROFILES_ACTIVE=docker
 
 volumes:
   postgres_data:
