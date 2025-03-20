@@ -1,0 +1,6 @@
+
+🆂🆃🆄🅳🅴🅽🆃🆂 🆂🅴🆁🆅🅸🅲🅴
+
+Application: ${spring.application.name}
+Java Version: ${java.version}
+🚀 Welcome to Students Service 🚀
