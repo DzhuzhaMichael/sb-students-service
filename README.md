@@ -83,4 +83,4 @@ http://localhost:15672
 ---
 
 ## 👨‍💻 Автор
-М. Джужа
+m.dzhuzha
