@@ -2,12 +2,14 @@ package com.example.sbstudentsservice.messaging;
 
 import com.example.sbstudentsservice.dto.message.GroupCreatedEvent;
 import com.example.sbstudentsservice.model.Group;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+@Slf4j
 @Component
 public class GroupEventPublisher {
 
@@ -30,6 +32,6 @@ public class GroupEventPublisher {
                 group.getId(), group.getName(), group.getCurator(), LocalDateTime.now()
         );
         rabbitTemplate.convertAndSend(exchange, routingKey, event);
-        System.out.println("⬆ Published event: " + event);
+        log.info("⬆ Published event: {}", event);
     }
 }

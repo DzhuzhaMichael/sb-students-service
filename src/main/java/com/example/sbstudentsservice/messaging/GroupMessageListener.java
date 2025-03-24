@@ -1,6 +1,7 @@
 package com.example.sbstudentsservice.messaging;
 
 import com.example.sbstudentsservice.dto.message.GroupCreatedEvent;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
@@ -8,6 +9,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+@Slf4j
 @Component
 public class GroupMessageListener {
 
@@ -16,11 +18,11 @@ public class GroupMessageListener {
     @RabbitListener(queues = "${rabbitmq.queue}")
     public void receiveMessage(GroupCreatedEvent event) {
         if (processedMessages.contains(event.getId())) {
-            System.out.println("⚠ Message with id " + event.getId() + " was processed. Skipped.");
+            log.warn("⚠ Message with id {} was already processed. Skipping. ", event.getId());
             return;
         }
 
-        System.out.println("✉ Received message: " + event);
+        log.info("✉ Received message: {}", event);
         processedMessages.add(event.getId());
     }
 

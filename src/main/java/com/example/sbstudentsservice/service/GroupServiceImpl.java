@@ -6,11 +6,13 @@ import com.example.sbstudentsservice.model.Group;
 import com.example.sbstudentsservice.repository.GroupRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class GroupServiceImpl implements GroupService {
 
@@ -40,6 +42,7 @@ public class GroupServiceImpl implements GroupService {
                     "' and curator '" + group.getCurator() + "' already exists");
         }
         Group savedGroup = groupRepository.save(group);
+        log.info("✓ Group saved: id={}, name={}, curator={}", savedGroup.getId(), savedGroup.getName(), savedGroup.getCurator());
         eventPublisher.publishGroupCreatedEvent(savedGroup);
         return savedGroup;
     }
